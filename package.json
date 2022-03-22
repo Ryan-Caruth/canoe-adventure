@@ -1,0 +1,23 @@
+{
+  "name": "canoe-adventure",
+  "version": "1.0.0",
+  "description": "A canoe trip choose your own adventure game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryan-Caruth/canoe-adventure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryan-Caruth/canoe-adventure/issues"
+  },
+  "homepage": "https://github.com/Ryan-Caruth/canoe-adventure#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
