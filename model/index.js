@@ -1,5 +1,3 @@
-// Wait for user's response.
-// let name = readlineSync.question("May I have your first name?");
 //Create an object for your given name: To be imported into server.js;
 const gameStates = {
   name: " ",
@@ -219,16 +217,10 @@ function thunderAndLightning(choice) {
   let randomNum = Math.floor(numOfChoices * Math.random());
   let lightning = isLightning[randomNum];
 
-  if (
-    (choice === "go" && lightning === "true") ||
-    (choice === "Go" && lightning === "true")
-  ) {
+  if (choice === "go" && lightning === "true" || choice === "Go" && lightning === "true") {
     return `You guys decided to risk it and go out during a storm. You guys got struck by lightning. You have lost all your XP.
     Play again? curl "http://localhost:5000/api/startGame"`;
-  } else if (
-    (choice === "go" && lightning === "false") ||
-    (choice === "Go" && lightning === "false")
-  ) {
+  } else if (choice === "go" && lightning === "false" || choice === "Go" && lightning === "false") {
     return `You are Lucky! You too have managed to escape the storm injury free. You have lost 20 XP for this poor decision however. 
     You now have ${(gameStates.XP -= 20)} XP. Please click this link to see what happens next: 
     curl "http://localhost:5000/api/hooray"`;
@@ -248,11 +240,9 @@ function trueOrFalse(knowledge) {
     You have lost all your XP. Would you like to play again?
     curl "http://localhost:5000/api/startGame"`;
   } else if (knowledge === "false" || knowledge === "False") {
-    return `Correct!! ${
-      gameStates.name
-    } and ${randomName}, you too a strong willed and were able to canoe the whole circuit.
-    You have gained 30 XP for this. You now have ${(gameStates.XP += 30)} XP. 
-    You win! Time to celebrate at the pub. Would you like to play again?
+    return `Correct!! ${gameStates.name} and ${randomName}, you too a strong willed and were able to canoe the whole circuit.
+    You have gained 30 XP for this. You now have ${(gameStates.XP += 30)} XP. You win!
+    Time to celebrate at the pub. Would you like to play again?
     curl "http://localhost:5000/api/startGame"`;
   } else {
     return `${wrong}, please enter {true or false}.`;
