@@ -23,7 +23,6 @@ const {
   waitOnShore,
   congrats,
   canoePartner,
-  gameStates,
 } = require("../model/index");
 
 router.get("/startGame", (req, res) => {
