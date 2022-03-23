@@ -5,6 +5,8 @@ const gameStates = {
 };
 
 let wrong = "Invalid choice";
+let links = "Please choose one of the two links to decide";
+let link = "Please click this link to see what happens next:";
 let terminal = "or copy this link and paste in your terminal";
 
 let randomName = generateRandomName();
@@ -14,18 +16,18 @@ function startGame() {
   gameStates.XP = 0;
   return `Welcome to 'A Weekend Getaway', a game that will test your instincts in a canoe. As you progress throughout the game 
   you will either gain or lose XP(expirence points) depending on the choices you make. Your XP has been set to ${gameStates.XP}.
-  Please click this link to continue: <a href = "http://localhost:5000/api/giveName?name=Enter your name">Enter your name</a> ${terminal}.
-  curl "http://localhost:5000/api/giveName?name=Enter your name here"`;
+  Please click this link to continue: <a href = "http://localhost:5000/api/giveName?name=Enter_your_name">Enter your name</a> ${terminal}.
+  curl "http://localhost:5000/api/giveName?name=Enter_your_name"`;
 }
 
 //Create a function to enter your name
 function giveName(name) {
   gameStates.name = name
-  if (name === 'Enter your name') {
+  if (name === 'Enter_your_name') {
     return 'Please enter your name'
   } else {
     return `Hello ${name}. Please click this link to find out who your canoe partner is:
-    <a href = "http://localhost:5000/api/generatedName">Generate name</a> ${terminal}.
+    <li><a href = "http://localhost:5000/api/generatedName">Generate name</a></li> ${terminal}.
     curl "http://localhost:5000/api/generatedName"`;
   }
 }
@@ -45,9 +47,9 @@ function generateRandomName() {
 
 //Create a random name function
 function canoePartner() {
-  return `Your canoe partner for this trip is ${randomName}. Please choose one of the two links to decide what canoe to have:
-  <a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=1">Recreational Canoe</a><br>
-  <a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=2">Expedition Canoe</a> ${terminal}.
+  return `Your canoe partner for this trip is ${randomName}. ${links} what canoe to have:
+  <li><a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=1">Recreational Canoe</a></li>
+  <li><a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=2">Expedition Canoe</a></li> ${terminal}.
   curl "http://localhost:5000/api/canoeChoice?chooseCanoe=1-Recreational Canoe, 2-Expedition Canoe"`;
 }
 
@@ -55,14 +57,18 @@ function canoePartner() {
 function chooseACanoe(chooseCanoe) {
   if (chooseCanoe === "1") {
     gameStates.XP = gameStates.XP + 5;
-    return `Your choice is the Recreational Canoe. You have gained 5 XP. You now have ${(gameStates.XP)} XP.
-    Early into your trip you guys come across some windy weather. Go to this link to learn how you guys navigate this lake:
+    return `Your choice is the Recreational Canoe. You have gained 5 XP. You now have ${gameStates.XP} XP.
+    Early into your trip you guys come across some windy weather. ${links} how you guys navigate the lake:
+    <li><a href = "http://localhost:5000/api/onTheWater?location=Middle">Paddle in the middle of the lake</a></li>
+    <li><a href = "http://localhost:5000/api/onTheWater?location=Side">Paddle near the shore</a></li> ${terminal}.
     curl "http://localhost:5000/api/onTheWater?location=Middle or Side"`;
   } else if (chooseCanoe === "2") {
     gameStates.XP = gameStates.XP + 10; 
-    return `Your choice is the Expedition Canoe. You have gained 10 XP. You now have ${(gameStates.XP)} XP.
-    Early into your trip you guys come across some windy weather. Go to this link to learn how you guys navigate this lake:
-    curl "http://localhost:5000/api/onTheWater?location=Middle or Side"`;
+    return `Your choice is the Expedition Canoe. You have gained 10 XP. You now have ${gameStates.XP} XP.
+    Early into your trip you guys come across some windy weather. ${links} how you guys navigate the lake:
+    <li><a href = "http://localhost:5000/api/onTheWater?location=Middle">Paddle in the middle of the lake</a></li>
+    <li><a href = "http://localhost:5000/api/onTheWater?location=Side">Paddle near the shore</a></li> ${terminal}.
+    curl "http://localhost:5000/api/onTheWater?location=Middle or Side"` 
   } else {
     return `${wrong}, please enter {1 for Recreational Canoe or 2 for Expedition Canoe}.`;
   }
@@ -73,12 +79,19 @@ function navigateTheLake(location) {
   if (location === "Middle" || location === "middle") {
     gameStates.XP =  gameStates.XP + 5;
     return `Not the best decision, the waves are difficult to steer through but you guys managed to make it. You have gained 5 XP.
-    You now have ${(gameStates.XP)} XP. Now the lake turns into a river with three directions. Which way do you go?
+    You now have ${gameStates.XP} XP. Now the lake turns into a river with three directions.
+    Please choose one of the three options on which way you go?
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=middle">Class III rapids-Medium Spice</a></li>
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=left">Class I rapids-Mild Spice<a/></li>
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=right">Class V rapids-Experts only-Carolina Reaper</a></li> ${terminal}.
     curl "http://localhost:5000/api/onTheRiver?direction=Enter left, right or middle"`;
   } else if (location === "Side" || location === "side") {
     gameStates.XP = gameStates.XP + 10;
-    return `Great choice!! Waves are really manageable near the shore. Lake soon narrows into a river with three directions.
-    You have gained 10 XP. You now have ${(gameStates.XP)} XP. Which way do you go? 
+    return `Great choice!! Waves are really manageable near the shore. You have gained 10 XP. You now have ${gameStates.XP} XP.
+    Lake soon narrows into a river with three directions. Please choose one of the three options on which way you go?
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=middle">Class III rapids-Medium Spice</a></li>
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=left">Class I rapids-Mild Spice<a/></li>
+    <li><a href = "http://localhost:5000/api/onTheRiver?direction=right">Class V rapids-Experts only-Carolina Reaper</a></li> ${terminal}.
     curl "http://localhost:5000/api/onTheRiver?direction=Enter left, right or middle"`;
   } else {
     return ` ${wrong}, please enter {Middle or Side}.`;
@@ -90,16 +103,17 @@ function riverDirectionChoice(direction) {
   if (direction === "left" || direction === "Left") {
     gameStates.XP = gameStates.XP + 10;
     return `This is a piece of cake. I could navigate this passage with my eyes closed. You have gained 10 XP.
-    You now have ${(gameStates.XP)} XP. Please go here to see what happens next: 
-    curl "http://localhost:5000/api/collisionOnRock"`;
+    You now have ${gameStates.XP} XP. ${link} <li><a href = "http://localhost:5000/api/collisionOnRock">Collide with rock</a></li>
+    ${terminal} curl "http://localhost:5000/api/collisionOnRock"`;
   } else if (direction === "right" || direction === "Right") {
     return `I'm sorry ${gameStates.name} and ${randomName}, a terrible decision is leading you over a waterfall. 
     This is a fatal fall. All your XP is lost. Would you like to play again?
+    <li><a href = "http://localhost:5000/api/startGame">Yes</a></li> ${terminal}.
     curl "http://localhost:5000/api/startGame"`;
   } else if (direction === "middle" || direction === "Middle") {
     gameStates.XP = gameStates.XP + 20;
-    return `The canoe is manoevering well down this passage. You have gained 20 XP. You now have ${(gameStates.XP)} XP.
-    Please go here to continue the story: curl "http://localhost:5000/api/hazard"`;
+    return `The canoe is manoevering well down this passage. You have gained 20 XP. You now have ${gameStates.XP} XP. ${link}
+    <li><a href = "http://localhost:5000/api/hazard">Hazard up ahead</a></li> ${terminal}. curl "http://localhost:5000/api/hazard"`;
   } else {
     return `${wrong}, please enter {left, right or middle}.`;
   }
@@ -109,16 +123,21 @@ function riverDirectionChoice(direction) {
 function collisionOnRock() {
   gameStates.XP = gameStates.XP - 10;
   return `Bang!! Canoe hits a log in the water and splits in half, all of your camping supplies is either at the bottom of the river
-   or swept away. Tough luck! Not seeing this rock has cost you 10 XP. You now have ${(gameStates.XP)} XP.
-   Choose 'option=grab' to grab canoe. Choose 'paddle=shore' to canoe to shore, continue to keep canoing down river.
-   Choose 'option=land and paddle=abandoned' to leave canoe and swim to shore. Please go here to see what happens next:
+   or swept away. Tough luck! Not seeing this rock has cost you 10 XP. You now have ${gameStates.XP} XP.
+   Choose 'option=grab' to grab canoe. Choose 'paddle=shore' to canoe to shore or continue to keep canoing down river.
+   Choose 'option=land and paddle=abandoned' to leave canoe and swim to shore. Please choose one of the three links:
+   <li><a href = "http://localhost:5000/api/inWater?option=land&paddle=abandoned">Swim to shore without canoe</a></li>
+   <li><a href = "http://localhost:5000/api/inWater?option=grab&paddle=shore">Paddle to shore</a></li>
+   <li><a href = "http://localhost:5000/api/inWater?option=grab&paddle=continue">Carry on down the river</a></li> ${terminal}
    curl "http://localhost:5000/api/inWater?option=grab&paddle=shore, continue or option =land'&'paddle=abandoned"`;
 }
 
 //Function for seeing a hazard up ahead
 function hazardUpAhead() {
   return `Uh oh, ${randomName}, who is sitting in the front of the canoe sees a hazard up ahead. 
-  Do they communicate with ${gameStates.name}? Please go here to answer the question. 
+  Do they communicate with ${gameStates.name}? ${links}
+  <li><a href = "http://localhost:5000/api/communicateWithStern?talking=yes">Yes</a></li>
+  <li><a href = "http://localhost:5000/api/communicateWithStern?talking=no">No</a></li> ${terminal}.
   curl "http://localhost:5000/api/communicateWithStern?talking=enter yes or no"`;
 }
 
@@ -189,13 +208,15 @@ function doTheyCommunicate(talking) {
   if (talking === "yes" || talking === "Yes") {
     gameStates.XP = gameStates.XP + 30;
     return `You guys successfully maneuver around the hazard. For this great communication you have gained 30 XP.
-    You now have ${(gameStates.XP)} XP. Please go to this link to continue the story: 
+    You now have ${gameStates.XP} XP. ${link}:
+    <li><a href = "http://localhost:5000/api/madeItToSite">Campsite</a></li> ${terminal}.
     curl "http://localhost:5000/api/madeItToSite"`;
   } else if (talking === "no" || talking === "No") {
     gameStates.XP = gameStates.XP - 20;
     return `Bang!! Canoe hits a log in the water and taco's, all of your camping supplies are either at the bottom of the river 
-    or swept away. Bad communication has led you to lose 20 XP. You now have ${(gameStates.XP)} XP. 
-    Please go here to see what happens next: curl "http://localhost:5000/api/capsize"`;
+    or swept away. Bad communication has led you to lose 20 XP. You now have ${gameStates.XP} XP. ${link}
+    <li><a href = "http://localhost:5000/api/capsize">Capsize</a></li> ${terminal} 
+    curl "http://localhost:5000/api/capsize"`;
   } else {
     return `${wrong}, please enter {yes or no}.`;
   }
@@ -204,14 +225,17 @@ function doTheyCommunicate(talking) {
 //Create a function for finishing the day up and arriving at a campsite.
 function arriveAtSite() {
   return `Hooray!! You too had a very successful day out on the water today. 
-  Now rest up at this campsite and leave bright and early tomorrow morning.
-  Please go to this link to see what happens next. curl "http://localhost:5000/api/nextDay"`;
+  Now rest up at this campsite and leave bright and early tomorrow morning. ${link}
+  <li><a href = "http://localhost:5000/api/nextDay">Next day</a></li> ${terminal}
+  curl "http://localhost:5000/api/nextDay"`;
 }
 
 //Create a function for starting the next day.
 function nextDay() {
   return `Rise and shine time to hit the water. Uh oh you guys see thunder clouds rolling in. 
-  Do you risk it and go out on the water or wait on land. Please go to this link to answer the question:
+  Do you risk it and go out on the water or wait on land. ${links}
+  <li><a href = "http://localhost:5000/api/doWeRiskIt?choice=wait">Wait</a></li>
+  <li><a href = "http://localhost:5000/api/doWeRiskIt?choice=go">Risk it</a></li> ${terminal}
   curl "http://localhost:5000/api/doWeRiskIt?choice=enter wait or go"`;
 }
 
@@ -220,8 +244,10 @@ function fallInWater() {
   return `The two of you fall into the water and get swept underneath a log jam.
     Fortunately the current lets go and you guys bob back up gasping for air and are able to swim to shore.
     On the shore you have a decision to make on what to do next. Choose 'find' to venture into the wild to find civilization,
-    choose 'shore' to stay on the shore and wait for help.
-    Please go here to enter your answer: curl "http://localhost:5000/api/choiceOnShore?survive=find or shore"`;
+    choose 'shore' to stay on the shore and wait for help. ${links}
+    <li><a href = "http://localhost:5000/api/choiceOnShore?survive=find">Find civilization</a></li>
+    <li><a href = "http://localhost:5000/api/choiceOnShore?survive=shore">Wait on the shore</a></li> ${terminal}
+    curl "http://localhost:5000/api/choiceOnShore?survive=find or shore"`;
 }
 
 //Function for decision on shore
@@ -229,12 +255,14 @@ function onShore(survive) {
   if (survive === "find" || survive === "Find") {
     gameStates.XP = gameStates.XP - 10;
     return `Cold, bruised and no food, you start venturing into the woods in hopes of finding civilization. You have lost 10 XP.
-    You are at ${(gameStates.XP)} XP. The end....For now. Play again? 
+    You are at ${gameStates.XP} XP. The end....For now. Play again?
+    <li><a href = "http://localhost:5000/api/startGame">Yes</a></li> ${terminal}
     curl "http://localhost:5000/api/startGame"`;
   } else if (survive === "shore" || survive === "Shore") {
     gameStates.XP = gameStates.XP - 5; 
     return `Cold, bruised and no food, you guys wait on shore for other canoers to spot you. You have lost 5 XP. 
-    You are at ${(gameStates.XP)} XP. The end....For now. Play again?
+    You are at ${gameStates.XP} XP. The end....For now. Play again?
+    <li><a href = "http://localhost:5000/api/startGame">Yes</a></li> ${terminal} 
     curl "http://localhost:5000/api/startGame"`;
   } else {
     return `${wrong}, please enter {find of shore}.`;
@@ -248,19 +276,21 @@ function thunderAndLightning(choice) {
   let randomNum = Math.floor(numOfChoices * Math.random());
   let lightning = isLightning[randomNum];
 
-  if (choice === "go" && lightning === "true" || choice === "Go" && lightning === "true") {
+  if (choice === "go" && lightning === isLightning[0] || choice === "Go" && lightning === isLightning[0]) {
     return `You guys decided to risk it and go out during a storm. You guys got struck by lightning. You have lost all your XP.
-    Play again? curl "http://localhost:5000/api/startGame"`;
-  } else if (choice === "go" && lightning === "false" || choice === "Go" && lightning === "false") {
+    Play again? <li><a href = "http://localhost:5000/api/startGame">Yes</a></li> ${terminal}. 
+    curl "http://localhost:5000/api/startGame"`;
+  } else if (choice === "go" && lightning === isLightning[1] || choice === "Go" && lightning === isLightning[1]) {
     gameStates.XP = gameStates.XP - 20;
     return `You are Lucky! You too have managed to escape the storm injury free. You have lost 20 XP for this poor decision however. 
-    You now have ${(gameStates.XP)} XP. Please click this link to see what happens next: 
+    You now have ${gameStates.XP} XP. ${link} <li><a href = "http://localhost:5000/api/hooray">Congrats</a></li> ${terminal}.
     curl "http://localhost:5000/api/hooray"`;
   } else if (choice === "wait" || choice === "Wait") {
     gameStates.XP = gameStates.XP + 30;
     return `Smart choice, within one hour the storm stopped. The lake became very flat and still, perfect for a paddle.
-      This great decision has earned you 30 XP. You now have ${(gameStates.XP)} XP. 
-      Please click this link to see what happens next:  curl "http://localhost:5000/api/hooray" `;
+      This great decision has earned you 30 XP. You now have ${gameStates.XP} XP. ${link}
+      <li><a href = "http://localhost:5000/api/hooray">Congrats</a></li> ${terminal}.
+      curl "http://localhost:5000/api/hooray" `;
   } else {
     return `${wrong}, please enter {wait or go}.`;
   }
@@ -286,6 +316,7 @@ function trueOrFalse(knowledge) {
 //Create a function for 'Congragulations'
 function congrats() {
   return `Congrats you guy's have made it out. Now go celebrate at the pub. Would you like to play again:
+  <li><a href = "http://localhost:5000/api/startGame">Yes</a></li> ${terminal}.
   curl "http://localhost:5000/api/startGame"`;
 }
 
