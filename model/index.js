@@ -14,7 +14,6 @@ const waitForHelp = "Cold, bruised and no food you guys wait on shore for help."
 const endForNow = "The end....for now!";
 const restart = "Yes";
 const keepGoing = "Continue";
-const ventureInWoods = "Cold, bruised and no food, you start venturing into the woods in hopes of finding civilization.";
 
 
 let randomName = generateRandomName();
