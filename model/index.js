@@ -5,6 +5,7 @@ const gameStates = {
 };
 
 let wrong = "Invalid choice";
+let terminal = "or copy this link and paste in your terminal";
 
 let randomName = generateRandomName();
 
@@ -12,9 +13,21 @@ let randomName = generateRandomName();
 function startGame() {
   gameStates.XP = 0;
   return `Welcome to 'A Weekend Getaway', a game that will test your instincts in a canoe. As you progress throughout the game 
-  you will either gain or lose XP(expirence points) depending on the choices you make. Your XP has been set to ${gameStates.XP}. 
-   Please copy this link and paste in your terminal to continue: 
-   curl "http://localhost:5000/api/giveName?name=Enter your name here".`;
+  you will either gain or lose XP(expirence points) depending on the choices you make. Your XP has been set to ${gameStates.XP}.
+  Please click this link to continue: <a href = "http://localhost:5000/api/giveName?name=Enter your name">Enter your name</a> ${terminal}.
+  curl "http://localhost:5000/api/giveName?name=Enter your name here"`;
+}
+
+//Create a function to enter your name
+function giveName(name) {
+  gameStates.name = name
+  if (name === 'Enter your name') {
+    return 'Please enter your name'
+  } else {
+    return `Hello ${name}. Please click this link to find out who your canoe partner is:
+    <a href = "http://localhost:5000/api/generatedName">Generate name</a> ${terminal}.
+    curl "http://localhost:5000/api/generatedName"`;
+  }
 }
 
 //Create a function for creating an array for randomly generated name
@@ -32,8 +45,9 @@ function generateRandomName() {
 
 //Create a random name function
 function canoePartner() {
-  return `Your canoe partner for this trip is ${randomName}. 
-  Please go to this link to decide what canoe to have
+  return `Your canoe partner for this trip is ${randomName}. Please choose one of the two links to decide what canoe to have:
+  <a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=1">Recreational Canoe</a><br>
+  <a href = "http://localhost:5000/api/canoeChoice?chooseCanoe=2">Expedition Canoe</a> ${terminal}.
   curl "http://localhost:5000/api/canoeChoice?chooseCanoe=1-Recreational Canoe, 2-Expedition Canoe"`;
 }
 
@@ -246,7 +260,7 @@ function thunderAndLightning(choice) {
     gameStates.XP = gameStates.XP + 30;
     return `Smart choice, within one hour the storm stopped. The lake became very flat and still, perfect for a paddle.
       This great decision has earned you 30 XP. You now have ${(gameStates.XP)} XP. 
-      Please click this link to see what happens next: curl "http://localhost:5000/api/hooray" `;
+      Please click this link to see what happens next:  curl "http://localhost:5000/api/hooray" `;
   } else {
     return `${wrong}, please enter {wait or go}.`;
   }
@@ -278,6 +292,7 @@ function congrats() {
 module.exports = {
   startGame,
   gameStates,
+  giveName,
   randomName,
   canoePartner,
   chooseACanoe,
