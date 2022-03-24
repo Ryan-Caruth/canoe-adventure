@@ -1,0 +1,40 @@
+This file provides easy access to the curl URLs
+starting point - curl http://localhost:5000/api/startGame
+Give your name - curl "http://localhost:5000/api/giveName?name=Enter_your_name"
+Generate player 2 name - curl "http://localhost:5000/api/generatedName"
+Recreation Canoe - curl "http://localhost:5000/api/canoeChoice?chooseCanoe=1"
+Expedition Canoe - curl "http://localhost:5000/api/canoeChoice?chooseCanoe=2"
+Paddle in the middle of the lake - curl "http://localhost:5000/api/onTheWater?location=Middle"
+Paddle near the shore - curl "http://localhost:5000/api/onTheWater?location=side"
+Fall over werterfall - curl "http://localhost:5000/api/onTheRiver?direction=right"
+Go in the middle - curl "http://localhost:5000/api/onTheRiver?direction=middle"
+Front canoer sees hazard up ahead - curl "http://localhost:5000/api/hazard
+You two communicate - curl "http://localhost:5000/api/communicateWithStern?talking=yes"
+Arrive at the campsite - curl "http://localhost:5000/api/madeItToSite"
+Thunder clouds rolling in  - curl "http://localhost:5000/api/nextDay"
+Wait out the thunder storm - curl "http://localhost:5000/api/doWeRiskIt?choice=wait"
+Congragulations - curl "http://localhost:5000/api/hooray"
+canoers do not communicate - curl "http://localhost:5000/api/communicateWithStern?talking=no"
+Canoers capsize because of no communication - curl "http://localhost:5000/api/capsize"
+Venture off into the wild to find civilization -curl "http://localhost:5000/api/choiceOnShore?survive=find"
+wait on shore for help - curl "http://localhost:5000/api/choiceOnShore?survive=shore"
+Go down the left channel of the river - curl "http://localhost:5000/api/onTheRiver?direction=Enter left"
+Collide on rock and flip - curl "http://localhost:5000/api/collisionOnRock"
+Abandon the canoe and swim to shore -  curl "http://localhost:5000/api/inWater?option=land&paddle=abandoned"
+Grab the canoe and paddle back to shore - curl "http://localhost:5000/api/inWater?option=grab&paddle=shore"
+Grab the canoe and continue on - curl "http://localhost:5000/api/inWater?option=grab&paddle=continue"
+stay on the shore -  curl "http://localhost:5000/api/canoeToShore?shoreChoice=stay"
+wait on shore - curl "http://localhost:5000/api/waitOnShore"
+keep on going after you grab the canoe - curl "http://localhost:5000/api/canoeToShore?shoreChoice=go"
+Make it too the campsite but have no supplies - curl "http://localhost:5000/api/continueSoaked"
+Question about hypothermia -  curl "http://localhost:5000/api/hypoQuestion"
+wrong answer to hypothermia question - curl "http://localhost:5000/api/hypoAnswer?knowledge=true"
+Right answer to hypothermia question - curl "http://localhost:5000/api/hypoAnswer?knowledge=false"
+
+
+
+
+
+
+
+
