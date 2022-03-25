@@ -30,6 +30,7 @@ Make it too the campsite but have no supplies - curl "http://localhost:5000/api/
 Question about hypothermia -  curl "http://localhost:5000/api/hypoQuestion"
 wrong answer to hypothermia question - curl "http://localhost:5000/api/hypoAnswer?knowledge=true"
 Right answer to hypothermia question - curl "http://localhost:5000/api/hypoAnswer?knowledge=false"
+Enjoy playing!
 
 
 
