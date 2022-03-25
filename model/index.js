@@ -60,19 +60,19 @@ function canoePartner() {
   curl "http://localhost:5000/api/canoeChoice?chooseCanoe=1-Recreational Canoe, 2-Expedition Canoe"`;
 }
 
-//Let the usere choose a canoe
+//Let the user choose a canoe
 function chooseACanoe(chooseCanoe) {
   if (chooseCanoe === "1") {
     gameStates.XP = gameStates.XP + 5;
     return `Your choice is the Recreational Canoe. You have gained 5 XP. You now have ${gameStates.XP} XP.
-    Early into your trip you guys come across some windy weather. ${links} how you guys navigate the lake:
+    Early into your trip you come across some windy weather. ${links} how do you decide to navigate the lake?
     <li><a href = "http://localhost:5000/api/onTheWater?location=Middle">Paddle in the middle of the lake</a></li>
     <li><a href = "http://localhost:5000/api/onTheWater?location=Side">Paddle near the shore</a></li> ${terminal}
     curl "http://localhost:5000/api/onTheWater?location=Middle or Side"`;
   } else if (chooseCanoe === "2") {
     gameStates.XP = gameStates.XP + 10; 
     return `Your choice is the Expedition Canoe. You have gained 10 XP. You now have ${gameStates.XP} XP.
-    Early into your trip you guys come across some windy weather. ${links} how you guys navigate the lake:
+    Early into your trip you come across some windy weather. ${links} how do you decide to navigate the lake?
     <li><a href = "http://localhost:5000/api/onTheWater?location=Middle">Paddle in the middle of the lake</a></li>
     <li><a href = "http://localhost:5000/api/onTheWater?location=Side">Paddle near the shore</a></li> ${terminal}
     curl "http://localhost:5000/api/onTheWater?location=Middle or Side"` 
@@ -85,7 +85,7 @@ function chooseACanoe(chooseCanoe) {
 function navigateTheLake(location) {
   if (location === "Middle" || location === "middle") {
     gameStates.XP =  gameStates.XP + 5;
-    return `Not the best decision, the waves are difficult to steer through but you guys managed to make it. You have gained 5 XP.
+    return `Not the best decision, the waves are difficult to steer through but you managed to make it. You have gained 5 XP.
     You now have ${gameStates.XP} XP. Now the lake turns into a river with three directions.
     Please choose one of the three options on which way you go?
     <li><a href = "http://localhost:5000/api/onTheRiver?direction=middle">Class III rapids-Medium Spice</a></li>
