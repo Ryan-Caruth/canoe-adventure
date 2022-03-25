@@ -73,7 +73,7 @@ function canoePartner() {
   curl "http://localhost:5000/api/canoeChoice?chooseCanoe=1-Recreational Canoe, 2-Expedition Canoe"`;
 }
 
-//Let the usere choose a canoe
+//Let the user choose a canoe
 function chooseACanoe(chooseCanoe) {
   if (chooseCanoe === "1") {
     gameStates.XP = gameStates.XP + gameXP.gain5;
