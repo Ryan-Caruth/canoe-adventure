@@ -187,7 +187,7 @@ function inWaterDecision(option, paddle) {
       return `${WRONG}, please enter {option=grab or land, paddle=shore, continue or {option=land, paddle = abandoned}.`;
     }
   } else {
-    return `${choice}, please enter {option=grab or land, paddle=shore, continue or {option=land, paddle = abandoned}.`;
+    return `${WRONG}, please enter {option=grab or land, paddle=shore, continue or {option=land, paddle = abandoned}.`;
   }
 }
 
