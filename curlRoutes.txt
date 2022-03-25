@@ -1,4 +1,4 @@
-This file provides easy access to the curl URLs
+This file provides easy access to the curl URL
 starting point - curl http://localhost:5000/api/startGame
 Give your name - curl "http://localhost:5000/api/giveName?name=Enter_your_name"
 Generate player 2 name - curl "http://localhost:5000/api/generatedName"
